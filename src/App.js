@@ -5,11 +5,12 @@ import * as React from "react";
 //    (ketika pathnya ke mana, akan memanggil component apa)
 // Link = anggap seperti anchor (<a></a>), namun untuk Router
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 function App() {
   return (
     <div className="App">
-      <h1>Salam dari React Router!</h1>
+      <Typography variant="h2">Salam dari React Router!</Typography>
       {/* Definisikan Routes di sini */}
       <Routes>
         {/* Di sini kita mendefinisikan path / akan memanggil Component Home */}
