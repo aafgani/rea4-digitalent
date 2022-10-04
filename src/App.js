@@ -6,11 +6,12 @@ import * as React from "react";
 // Link = anggap seperti anchor (<a></a>), namun untuk Router
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import { Typography } from "@mui/material";
+import Todo from "./containers/ToDo";
 
 function App() {
   return (
     <div className="App">
-      <Typography variant="h2">Salam dari React Router!</Typography>
+      <Typography variant="h2">Learn React!</Typography>
       {/* Definisikan Routes di sini */}
       <Routes>
         {/* Di sini kita mendefinisikan path / akan memanggil Component Home */}
@@ -18,6 +19,7 @@ function App() {
         {/* Di sini kita mendefinisikan path /about akan memanggil Component About */}
         <Route path="about" element={<About />} />
         <Route path="formulir" element={<CustomForm />} />
+        <Route path="todo" element={<Todo />} />
       </Routes>
     </div>
   );
