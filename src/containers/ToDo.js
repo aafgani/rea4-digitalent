@@ -18,13 +18,13 @@ function ToDo() {
   };
 
   const removeItemTodo = (idToRemove) => {
-    const updatedTodos = todos.filter((i) => i.id != idToRemove);
+    const updatedTodos = todos.filter((i) => i.id !== idToRemove);
     setTodos(updatedTodos);
   };
 
   const checked = (id, name, isCompleted) => {
     const updatedTodos = todos.map((item) =>
-      item.id == id ? { id: id, name: name, isCompleted: isCompleted } : item
+      item.id === id ? { id: id, name: name, isCompleted: isCompleted } : item
     );
     setTodos(updatedTodos);
   };
