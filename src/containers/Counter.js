@@ -6,23 +6,34 @@ import CounterReducerComponent from "../components/CounterReducerComponent";
 import { legacy_createStore as createStore } from "redux";
 import { initialValue, rootReducer } from "../reducers/rootReducer";
 import { Provider } from "react-redux";
+import CounterRTK from "../components/CounterRTK";
+import { storeRTK } from "../app/store";
 
 const store = createStore(rootReducer, initialValue);
 
 const Counter = () => {
   return (
-    <Provider store={store}>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <CounterReducerComponent />
+    <>
+      <Provider store={store}>
+        <Box sx={{ flexGrow: 1 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <CounterReducerComponent />
+            </Grid>
+            <Grid item xs={6}>
+              <CounterRedux />
+            </Grid>
           </Grid>
+        </Box>
+      </Provider>
+      <Provider store={storeRTK}>
+        <Box>
           <Grid item xs={6}>
-            <CounterRedux />
+            <CounterRTK />
           </Grid>
-        </Grid>
-      </Box>
-    </Provider>
+        </Box>
+      </Provider>
+    </>
   );
 };
 

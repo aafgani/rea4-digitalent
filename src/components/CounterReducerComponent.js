@@ -47,12 +47,14 @@ const CounterReducerComponent = () => {
         <Typography variant="body1" component="div">
           Use Reducer
         </Typography>
+        <Typography variant="body1" component="div">
+          Name :
+        </Typography>
 
         <Box sx={{ display: "flex", gap: 2 }}>
           <TextField
             disabled
             label="Current Counter"
-            // defaultValue="0"
             value={counter}
             size="small"
           />

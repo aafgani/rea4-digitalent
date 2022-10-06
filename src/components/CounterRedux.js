@@ -49,7 +49,7 @@ const CounterRedux = () => {
           <TextField
             disabled
             label="Current Counter"
-            defaultValue="0"
+            // defaultValue="0"
             value={counter}
             size="small"
           />
