@@ -7,6 +7,7 @@ import { legacy_createStore as createStore } from "redux";
 import { initialValue, rootReducer } from "../reducers/rootReducer";
 import { Provider } from "react-redux";
 import CounterRTK from "../components/CounterRTK";
+import CounterRTK_Middleware from "../components/CounterRTK_Middleware";
 import { storeRTK } from "../app/store";
 
 const store = createStore(rootReducer, initialValue);
@@ -28,8 +29,13 @@ const Counter = () => {
       </Provider>
       <Provider store={storeRTK}>
         <Box>
-          <Grid item xs={6}>
-            <CounterRTK />
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <CounterRTK />
+            </Grid>
+            <Grid item xs={6}>
+              <CounterRTK_Middleware />
+            </Grid>
           </Grid>
         </Box>
       </Provider>
