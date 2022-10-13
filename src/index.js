@@ -11,6 +11,9 @@ import Counter from "./containers/Counter";
 import { legacy_createStore as createStore } from "redux";
 import { initialValue, rootReducer } from "./reducers/rootReducer";
 import { Provider } from "react-redux";
+import LoginPage from "./containers/LoginPage";
+import RegisterPage from "./containers/RegisterPage";
+import { Home } from "./App";
 
 const store = createStore(rootReducer, initialValue);
 
@@ -21,9 +24,12 @@ root.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
+            <Route path="/home" element={<Home />} />
             <Route path="/todo" element={<Todo />} />
             <Route path="/github" element={<GithubRepo />} />
             <Route path="/counter" element={<Counter />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -7,10 +7,29 @@ import * as React from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 
+// Dan juga harus menggunakan useAuthState untuk mengecek apakah sedang ada user yang login
+
+// Dan membutuhkan auth dari authentication/firebase.js karena dibutuhkan oleh useAuthState
+import { auth } from "./authentication/firebase";
+import NavBar from "./components/Navbar";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 function App() {
+  const [user, isLoading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, isLoading, navigate]);
+
   return (
     <div className="App">
-      <Typography variant="h2">Learn React!</Typography>
+      <NavBar />
+      <br />
       <Outlet />
     </div>
   );
@@ -23,7 +42,6 @@ function Home() {
     <>
       <main>
         <h2>Halo dari Homepage</h2>
-        <p>Mari belajar Routing, yuk yuk yuk !</p>
       </main>
       <nav>
         {/* Ini adalah anchor nya untuk Route */}
@@ -70,4 +88,5 @@ function CustomForm() {
   );
 }
 
+export { Home };
 export default App;
