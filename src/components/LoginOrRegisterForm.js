@@ -51,7 +51,7 @@ const LoginOrRegisterForm = ({ loginOrRegister }) => {
 
   const loginHandler = () => {
     signInDenganEmaildanPassword(credential.email, credential.password);
-    navigate("/");
+    navigate("/home");
   };
 
   const registerHandler = () => {

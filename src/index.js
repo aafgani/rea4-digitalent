@@ -14,7 +14,7 @@ import { Provider } from "react-redux";
 import LoginPage from "./containers/LoginPage";
 import RegisterPage from "./containers/RegisterPage";
 import { Home } from "./App";
-
+import ProtectedComponent from "./components/ProtectedComponent";
 const store = createStore(rootReducer, initialValue);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -23,13 +23,21 @@ root.render(
     <GithubProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          <Route
+            path="/"
+            element={
+              <ProtectedComponent>
+                <App />
+              </ProtectedComponent>
+            }
+          >
             <Route path="/home" element={<Home />} />
             <Route path="/todo" element={<Todo />} />
             <Route path="/github" element={<GithubRepo />} />
             <Route path="/counter" element={<Counter />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

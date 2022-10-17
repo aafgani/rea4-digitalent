@@ -15,17 +15,6 @@ import NavBar from "./components/Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function App() {
-  const [user, isLoading, error] = useAuthState(auth);
-  const navigate = useNavigate();
-  React.useEffect(() => {
-    if (isLoading) {
-      return;
-    }
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user, isLoading, navigate]);
-
   return (
     <div className="App">
       <NavBar />
@@ -38,15 +27,21 @@ function App() {
 // Sangat tidak disarankan membuat multi component di App.js
 // Hanya untuk pembelajaran belaka yah !
 function Home() {
+  const [user] = useAuthState(auth);
   return (
     <>
       <main>
         <h2>Halo dari Homepage</h2>
+        {/* Kita akan tampilkan email dari user di sini */}
+        {user ? (
+          <Typography variant="body1">
+            Email - <strong>{user.email}</strong>, uid -{" "}
+            <strong>{user.uid}</strong>
+          </Typography>
+        ) : (
+          ""
+        )}
       </main>
-      <nav>
-        {/* Ini adalah anchor nya untuk Route */}
-        <Link to="/about">About</Link>
-      </nav>
     </>
   );
 }
