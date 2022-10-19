@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import CounterRTK from "../components/CounterRTK";
 import CounterRTK_Middleware from "../components/CounterRTK_Middleware";
 import { storeRTK } from "../app/store";
+import ColorList from "../components/ColorList";
+import ColorForm from "../components/ColorForm";
 
 const store = createStore(rootReducer, initialValue);
 
@@ -35,6 +37,10 @@ const Counter = () => {
             </Grid>
             <Grid item xs={6}>
               <CounterRTK_Middleware />
+            </Grid>
+            <Grid item xs={6}>
+              <ColorForm />
+              <ColorList />
             </Grid>
           </Grid>
         </Box>
