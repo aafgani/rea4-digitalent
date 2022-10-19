@@ -4,8 +4,17 @@ import React, { useState, useEffect } from "react";
 // Gunakan .module.css untuk mendapatkan scoped css
 import styles from "./LoginOrRegisterForm.module.css";
 
-import { Grid, Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Grid,
+  Box,
+  Button,
+  TextField,
+  Typography,
+  IconButton,
+} from "@mui/material";
 import { Link } from "react-router-dom";
+import GoogleIcon from "@mui/icons-material/Google";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 // Karena nantinya kita bisa berpindah ke halaman LoginPage (setelah Register)
 // ataupun ke halaman HomePage (setelah Login), maka kita bisa memanfaatkan useNavigate
@@ -17,6 +26,8 @@ import {
   auth,
   signInDenganEmaildanPassword,
   registrasiDenganEmaildanPassword,
+  signInWithGoogle,
+  signInWithOauth,
 } from "../authentication/firebase";
 
 const LoginOrRegisterForm = ({ loginOrRegister }) => {
@@ -65,6 +76,14 @@ const LoginOrRegisterForm = ({ loginOrRegister }) => {
     } else {
       registerHandler();
     }
+  };
+
+  const loginWithGoogle = (e) => {
+    signInWithGoogle();
+  };
+
+  const loginWithOauth = (e) => {
+    signInWithOauth();
   };
 
   useEffect(() => {
@@ -117,9 +136,21 @@ const LoginOrRegisterForm = ({ loginOrRegister }) => {
         </Button>
 
         {loginOrRegister === "login" ? (
-          <Link to="/register">
-            <Typography variant="body1">or do you want Register ?</Typography>
-          </Link>
+          <>
+            <Box>
+              <IconButton onClick={loginWithGoogle}>
+                <GoogleIcon />
+                <span>Google</span>
+              </IconButton>
+              <IconButton onClick={loginWithOauth}>
+                <GitHubIcon />
+                <span>Github</span>
+              </IconButton>
+            </Box>
+            <Link to="/register">
+              <Typography variant="body1">or do you want Register ?</Typography>
+            </Link>
+          </>
         ) : (
           <Link to="/login">
             <Typography variant="body1">or do you want Login ?</Typography>

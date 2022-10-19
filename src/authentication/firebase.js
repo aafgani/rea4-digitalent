@@ -8,7 +8,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  GoogleAuthProvider,
+  OAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAbMvNOK1nqF09c3VOrtVolsAeGjug43JM",
@@ -18,6 +22,21 @@ const firebaseConfig = {
   messagingSenderId: "125784046924",
   appId: "1:125784046924:web:f47e2606039eda0d6663e9",
 };
+
+const googleProvider = new GoogleAuthProvider();
+googleProvider.addScope("profile");
+googleProvider.addScope("email");
+
+const oauthProvider = new OAuthProvider("microsoft.com");
+oauthProvider.setCustomParameters({
+  // Optional "tenant" parameter in case you are using an Azure AD tenant.
+  // eg. '8eaef023-2b34-4da1-9baa-8bc8c9d6a490' or 'contoso.onmicrosoft.com'
+  // or "common" for tenant-independent tokens.
+  // The default value is "common".
+  tenant: "7e59cca2-3b49-4008-8ec5-c6558225d6cf",
+  // Force re-consent.
+  prompt: "consent",
+});
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -65,9 +84,29 @@ const signOutDariApp = async () => {
   }
 };
 
+const signInWithGoogle = async () => {
+  try {
+    const userCredential = await signInWithPopup(auth, googleProvider);
+    console.log(userCredential);
+  } catch (error) {
+    console.log("error : " + error);
+  }
+};
+
+const signInWithOauth = async () => {
+  try {
+    const userCredential = await signInWithPopup(auth, oauthProvider);
+    console.log(userCredential);
+  } catch (error) {
+    console.log("error : " + error);
+  }
+};
+
 export {
   auth,
   signInDenganEmaildanPassword,
   signOutDariApp,
   registrasiDenganEmaildanPassword,
+  signInWithGoogle,
+  signInWithOauth,
 };
